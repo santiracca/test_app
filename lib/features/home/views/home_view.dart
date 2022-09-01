@@ -19,13 +19,10 @@ class HomeView extends HookConsumerWidget {
         onPressed: ref.read(homeViewProvider).navigateToProfilePage,
         child: const Icon(Icons.arrow_forward_ios),
       ),
-      body: GestureDetector(
-        onTap: ref.read(homeViewProvider).changeUserName,
-        child: Center(
-          child: homeViewState.isLoading
-              ? CircularProgressIndicator()
-              : Text("Soy ${homeViewState.userName}"),
-        ),
+      body: Center(
+        child: homeViewState.isLoading
+            ? CircularProgressIndicator()
+            : Text("Soy ${homeViewState.user!.name}"),
       ),
     );
   }

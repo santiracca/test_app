@@ -4,6 +4,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:test_app/core/dependecy_injection/locator.dart';
 import 'package:test_app/core/router/router.dart' as router;
 import 'package:test_app/core/services/http_service.dart';
+import 'package:test_app/features/home/models/user.dart';
 
 const API_BASE_URL = 'https://rickandmortyapi.com/api';
 
@@ -20,25 +21,25 @@ class HomeViewController extends ChangeNotifier {
         _snackbarService = snackbarService ?? locator<SnackbarService>(),
         _httpService = httpService ?? locator<HttpService>();
 
-  String userName = 'Santi';
-  bool isLoading = true;
+  User? user;
+  bool isLoading = false;
+
+  void setLoading(bool val) {
+    isLoading = val;
+    notifyListeners();
+  }
 
   Future<void> getUser() async {
     try {
+      setLoading(true);
       final response =
           await _httpService.client.get("$API_BASE_URL/character/2");
 
-      userName = response.data['name'];
-      isLoading = false;
-      notifyListeners();
+      user = User.fromJson(response.data);
+      setLoading(false);
     } catch (e) {
       _snackbarService.showSnackbar(message: 'Que cagadaaaa');
     }
-  }
-
-  void changeUserName() {
-    userName = userName == 'Santi' ? 'El pueblo' : 'Santi';
-    notifyListeners();
   }
 
   void navigateToProfilePage() {
