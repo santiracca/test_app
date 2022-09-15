@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:test_app/core/dependecy_injection/locator.dart';
+import 'package:test_app/core/dependency_injection/locator.dart';
 import 'package:test_app/core/router/router.dart' as router;
 
 void main() {
