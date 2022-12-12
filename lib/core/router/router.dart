@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_app/features/user/presentation/views/home_view.dart';
+import 'package:test_app/features/workout/presentation/views/home_view.dart';
 
 class Router {
   static const homePage = '/home';
